@@ -18,14 +18,14 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({
   onClose,
   onSuccess,
 }) => {
-  if (!product) return null;
-
   const [paymentMethod, setPaymentMethod] = useState<'orange' | 'wave' | 'cash'>('orange');
-  const [deliveryAddress, setDeliveryAddress] = useState(`${user.quartier}, Rue 314`);
-  const [userPhone, setUserPhone] = useState(user.phone);
+  const [deliveryAddress, setDeliveryAddress] = useState(`${user?.quartier || 'Hamdallaye ACI'}, Rue 314`);
+  const [userPhone, setUserPhone] = useState(user?.phone || '');
   const [loading, setLoading] = useState(false);
   const [otpCode, setOtpCode] = useState('');
   const [step, setStep] = useState<'details' | 'otp' | 'confirmed'>('details');
+
+  if (!product) return null;
 
   const deliveryFee = 1500;
   const total = product.price + deliveryFee;

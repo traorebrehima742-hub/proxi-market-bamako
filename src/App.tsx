@@ -420,69 +420,77 @@ function AppContent() {
 
       {/* MODALS */}
       {/* Product Details Sheet */}
-      <ProductDetailModal
-        product={selectedProduct}
-        onClose={() => setSelectedProduct(null)}
-        onToggleFavorite={handleToggleFavorite}
-        onStartChat={handleStartProductChat}
-        onOrder={(p) => {
-          setSelectedProduct(null);
-          setSelectedProductForPayment(p);
-        }}
-      />
+      {selectedProduct && (
+        <ProductDetailModal
+          product={selectedProduct}
+          onClose={() => setSelectedProduct(null)}
+          onToggleFavorite={handleToggleFavorite}
+          onStartChat={handleStartProductChat}
+          onOrder={(p) => {
+            setSelectedProduct(null);
+            setSelectedProductForPayment(p);
+          }}
+        />
+      )}
 
       {/* Request Artisan Quote Modal */}
-      <QuoteModal
-        artisan={selectedArtisanForQuote}
-        onClose={() => setSelectedArtisanForQuote(null)}
-        onSubmitQuote={handleSubmitQuote}
-        onStartChat={handleStartArtisanChat}
-      />
+      {selectedArtisanForQuote && (
+        <QuoteModal
+          artisan={selectedArtisanForQuote}
+          onClose={() => setSelectedArtisanForQuote(null)}
+          onSubmitQuote={handleSubmitQuote}
+          onStartChat={handleStartArtisanChat}
+        />
+      )}
 
       {/* Dedicated Quote Consultation & Validation Modal */}
-      <QuoteDetailModal
-        quote={selectedQuote}
-        onClose={() => setSelectedQuote(null)}
-        onStatusChange={handleQuoteStatusChange}
-        onOpenChat={(q) => {
-          const matchingThread = threads.find(
-            (t) =>
-              t.id === q.threadId ||
-              t.contactName === q.artisanName ||
-              (t.phone && t.phone.replace(/\s+/g, '') === q.artisanPhone.replace(/\s+/g, ''))
-          );
-          if (matchingThread) {
-            setSelectedThread(matchingThread);
-          } else {
-            const art = artisans.find((a) => a.name === q.artisanName || a.id === q.artisanId) || {
-              id: q.artisanId,
-              name: q.artisanName,
-              trade: q.artisanTrade,
-              avatar: q.artisanAvatar,
-              phone: q.artisanPhone,
-              rating: 4.8,
-              reviewsCount: 15,
-              verified: true,
-              location: q.artisanLocation,
-              quartier: user?.quartier || 'Bamako',
-              minPrice: q.priceEstimate,
-              badge: 'Artisan Proxi',
-              specialties: [q.artisanTrade],
-            };
-            const thr = Storage.getOrCreateArtisanThread(art);
-            setThreads(Storage.getThreads());
-            setSelectedThread(thr);
-          }
-        }}
-      />
+      {selectedQuote && (
+        <QuoteDetailModal
+          quote={selectedQuote}
+          onClose={() => setSelectedQuote(null)}
+          onStatusChange={handleQuoteStatusChange}
+          onOpenChat={(q) => {
+            const matchingThread = threads.find(
+              (t) =>
+                t.id === q.threadId ||
+                t.contactName === q.artisanName ||
+                (t.phone && t.phone.replace(/\s+/g, '') === q.artisanPhone.replace(/\s+/g, ''))
+            );
+            if (matchingThread) {
+              setSelectedThread(matchingThread);
+            } else {
+              const art = artisans.find((a) => a.name === q.artisanName || a.id === q.artisanId) || {
+                id: q.artisanId,
+                name: q.artisanName,
+                trade: q.artisanTrade,
+                avatar: q.artisanAvatar,
+                phone: q.artisanPhone,
+                rating: 4.8,
+                reviewsCount: 15,
+                verified: true,
+                location: q.artisanLocation,
+                quartier: user?.quartier || 'Bamako',
+                minPrice: q.priceEstimate,
+                badge: 'Artisan Proxi',
+                specialties: [q.artisanTrade],
+              };
+              const thr = Storage.getOrCreateArtisanThread(art);
+              setThreads(Storage.getThreads());
+              setSelectedThread(thr);
+            }
+          }}
+        />
+      )}
 
       {/* Payment & Express Order Modal */}
-      <PaymentModal
-        product={selectedProductForPayment}
-        user={user}
-        onClose={() => setSelectedProductForPayment(null)}
-        onSuccess={handleOrderSuccess}
-      />
+      {selectedProductForPayment && (
+        <PaymentModal
+          product={selectedProductForPayment}
+          user={user}
+          onClose={() => setSelectedProductForPayment(null)}
+          onSuccess={handleOrderSuccess}
+        />
+      )}
 
       {/* Live Order Tracker Modal */}
       {isOrderTrackOpen && (
@@ -498,12 +506,14 @@ function AppContent() {
       )}
 
       {/* Interactive Chat Modal */}
-      <ChatModal
-        thread={selectedThread}
-        onClose={() => setSelectedThread(null)}
-        onThreadsUpdate={handleThreadsUpdate}
-        onOpenQuoteDetail={handleOpenQuoteDetailFromThread}
-      />
+      {selectedThread && (
+        <ChatModal
+          thread={selectedThread}
+          onClose={() => setSelectedThread(null)}
+          onThreadsUpdate={handleThreadsUpdate}
+          onOpenQuoteDetail={handleOpenQuoteDetailFromThread}
+        />
+      )}
 
       {/* Frosted Glass Login, 2FA, Reset Password Modal */}
       <AuthModal

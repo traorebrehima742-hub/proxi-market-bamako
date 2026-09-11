@@ -260,8 +260,6 @@ export const ChatModal: React.FC<ChatModalProps> = ({
   onThreadsUpdate,
   onOpenQuoteDetail,
 }) => {
-  if (!thread) return null;
-
   const [inputMsg, setInputMsg] = useState('');
   const [isTyping, setIsTyping] = useState(false);
 
@@ -287,6 +285,8 @@ export const ChatModal: React.FC<ChatModalProps> = ({
       }
     };
   }, []);
+
+  if (!thread) return null;
 
   const quickSuggestions = [
     'Bonjour, êtes-vous disponible aujourd’hui ?',

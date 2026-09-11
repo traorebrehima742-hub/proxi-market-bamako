@@ -19,10 +19,10 @@ export const QuoteDetailModal: React.FC<QuoteDetailModalProps> = ({
   onStatusChange,
   onOpenChat,
 }) => {
-  if (!quote) return null;
-
   const [copied, setCopied] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
+
+  if (!quote) return null;
 
   const getStatusBadge = (status: QuoteStatus) => {
     switch (status) {

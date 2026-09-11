@@ -20,9 +20,9 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
   onOrder,
   onStartChat,
 }) => {
-  if (!product) return null;
-
   const [copied, setCopied] = useState(false);
+
+  if (!product) return null;
 
   const handleCall = () => {
     window.location.href = `tel:${product.phone}`;

@@ -15,13 +15,13 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
   onSubmitQuote,
   onStartChat,
 }) => {
-  if (!artisan) return null;
-
   const [project, setProject] = useState('');
   const [urgency, setUrgency] = useState('Aujourd’hui (Urgent)');
   const [address, setAddress] = useState('Hamdallaye ACI 2000, Rue 314');
   const [description, setDescription] = useState('');
   const [submitted, setSubmitted] = useState(false);
+
+  if (!artisan) return null;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
