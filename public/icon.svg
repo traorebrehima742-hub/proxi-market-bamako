@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#008378" />
+      <stop offset="100%" stop-color="#005049" />
+    </linearGradient>
+    <linearGradient id="amberGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fea619" />
+      <stop offset="100%" stop-color="#d97706" />
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#003530" flood-opacity="0.35" />
+    </filter>
+  </defs>
+
+  <!-- Background base rounded card -->
+  <rect width="512" height="512" rx="110" fill="#f0faf8" />
+  
+  <!-- Outer dotted orbit ring -->
+  <circle cx="256" cy="235" r="160" fill="none" stroke="#a6f2d1" stroke-width="3.5" stroke-dasharray="8 8" opacity="0.8" />
+
+  <!-- Main Teardrop Pin Marker with shadow -->
+  <g filter="url(#shadow)">
+    <path d="M 256 90 C 160 90 95 160 95 240 C 95 320 256 410 256 410 C 256 410 417 320 417 240 C 417 160 352 90 256 90 Z" fill="url(#bgGrad)" />
+  </g>
+
+  <!-- Top highlight glossy arc on pin -->
+  <path d="M 170 185 C 195 140 317 140 342 185" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="12" stroke-linecap="round" />
+
+  <!-- White handle arch -->
+  <path d="M 195 175 C 195 145 317 145 317 175" fill="none" stroke="#ffffff" stroke-width="16" stroke-linecap="round" />
+
+  <!-- Amber/Gold Bag & Shield Emblem -->
+  <path d="M 185 220 L 327 220 C 330 260 325 305 305 315 C 290 322 280 310 256 312 C 232 310 222 322 207 315 C 187 305 182 260 185 220 Z" fill="url(#amberGrad)" />
+
+  <!-- Center White Lock Box -->
+  <rect x="232" y="285" width="48" height="46" rx="10" fill="#ffffff" />
+  <circle cx="256" cy="308" r="7" fill="#d97706" />
+
+  <!-- Bottom Proxi Market Text Label -->
+  <text x="256" y="465" text-anchor="middle" font-family="'Inter', sans-serif" font-size="30" font-weight="800" fill="#00685f" letter-spacing="1">
+    Proxi<tspan fill="#d97706">Market</tspan>
+  </text>
+</svg>

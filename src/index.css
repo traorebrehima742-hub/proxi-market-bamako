@@ -1,0 +1,228 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    --primary: #00685f;
+    --primary-container: #008378;
+    --on-primary: #ffffff;
+    --secondary: #855300;
+    --secondary-container: #fea619;
+    --tertiary: #17684e;
+    --tertiary-container: #378166;
+    --surface: #f8f9ff;
+    --surface-low: #eff4ff;
+    --surface-container: #e5eeff;
+    --surface-high: #dce9ff;
+    --surface-lowest: #ffffff;
+    --on-surface: #0b1c30;
+    --on-surface-variant: #3d4947;
+    --outline: #6d7a77;
+    --outline-variant: #bcc9c6;
+  }
+
+  .dark {
+    --surface: #0a111a;
+    --surface-low: #0f1824;
+    --surface-container: #142030;
+    --surface-high: #1b2a3e;
+    --surface-lowest: #060b12;
+    --on-surface: #f1f5f9;
+    --on-surface-variant: #94a3b8;
+    --outline: #475569;
+    --outline-variant: #1e293b;
+  }
+
+  html, body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: var(--surface);
+    color: var(--on-surface);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    overscroll-behavior-y: none;
+  }
+
+  body.scroll-locked,
+  html.scroll-locked {
+    overflow: hidden !important;
+    touch-action: none !important;
+    -webkit-overflow-scrolling: auto !important;
+    overscroll-behavior: none !important;
+  }
+}
+
+/* Custom scrollbar and safe area helpers */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.pb-safe {
+  padding-bottom: max(env(safe-area-inset-bottom, 0px), 16px);
+}
+.pt-safe {
+  padding-top: max(env(safe-area-inset-top, 0px), 12px);
+}
+
+/* Claymorphism & Frosted Glass Shadows */
+.clay-card {
+  box-shadow: 0 8px 20px -4px rgba(11, 28, 48, 0.07),
+              0 2px 6px -1px rgba(11, 28, 48, 0.04),
+              inset 0 1.5px 1.5px rgba(255, 255, 255, 0.95),
+              inset 0 -2px 0 rgba(211, 228, 254, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+}
+
+.clay-card-amber {
+  box-shadow: 0 6px 16px rgba(133, 83, 0, 0.12),
+              inset 0 2px 0 rgba(255, 255, 255, 0.9),
+              inset 0 -2px 4px rgba(133, 83, 0, 0.08);
+  border: 1px solid rgba(255, 221, 184, 0.6);
+}
+
+.clay-btn-primary {
+  box-shadow: 0 4px 12px rgba(0, 104, 95, 0.3),
+              inset 0 1px 2px rgba(255, 255, 255, 0.35),
+              inset 0 -2px 0 rgba(0, 0, 0, 0.2);
+}
+
+.clay-btn-secondary {
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.06),
+              inset 0 1px 1px rgba(255, 255, 255, 0.9),
+              inset 0 -2px 0 rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+.clay-inset {
+  box-shadow: inset 0 1.5px 3px rgba(11, 28, 48, 0.06),
+              0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.glass-morphism {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 20px 40px -15px rgba(0, 104, 95, 0.15),
+              inset 0 2px 2px rgba(255, 255, 255, 0.9);
+}
+
+.glass-modal {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 25px 50px -12px rgba(11, 28, 48, 0.25),
+              inset 0 2px 2px rgba(255, 255, 255, 1);
+}
+
+/* Dark Mode Glassmorphism & Frosted Glass Depth */
+.dark html, .dark body {
+  background-color: var(--surface);
+  color: var(--on-surface);
+}
+
+.dark .clay-card {
+  background-color: rgba(18, 30, 48, 0.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5),
+              0 4px 10px -2px rgba(0, 0, 0, 0.3),
+              inset 0 1.5px 1.5px rgba(255, 255, 255, 0.1),
+              inset 0 -1px 0 rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.dark .clay-card-amber {
+  background-color: rgba(36, 26, 12, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4),
+              inset 0 1.5px 1.5px rgba(254, 166, 25, 0.2),
+              inset 0 -1px 0 rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(254, 166, 25, 0.25);
+}
+
+.dark .clay-btn-secondary {
+  background-color: rgba(26, 41, 64, 0.85);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3),
+              inset 0 1px 1px rgba(255, 255, 255, 0.12),
+              inset 0 -1px 0 rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #f1f5f9;
+}
+
+.dark .clay-inset {
+  background-color: rgba(10, 18, 30, 0.65);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.6),
+              0 1px 0 rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.dark .glass-morphism {
+  background: rgba(15, 26, 42, 0.8);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7),
+              inset 0 1.5px 1.5px rgba(255, 255, 255, 0.12);
+}
+
+.dark .glass-modal {
+  background: rgba(13, 23, 38, 0.92);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.85),
+              inset 0 1.5px 1.5px rgba(255, 255, 255, 0.15);
+}
+
+/* Contrast and readability adjustments in dark mode */
+.dark .text-slate-900 {
+  color: #f8fafc;
+}
+.dark .text-slate-800 {
+  color: #f1f5f9;
+}
+.dark .text-slate-700 {
+  color: #e2e8f0;
+}
+.dark .text-slate-600 {
+  color: #cbd5e1;
+}
+.dark .text-slate-500 {
+  color: #94a3b8;
+}
+
+.dark .bg-white {
+  background-color: rgba(18, 30, 48, 0.78);
+}
+.dark .bg-slate-50 {
+  background-color: rgba(15, 24, 38, 0.6);
+}
+.dark .bg-slate-100 {
+  background-color: rgba(26, 41, 64, 0.7);
+}
+.dark .bg-slate-200 {
+  background-color: rgba(40, 58, 86, 0.7);
+}
+
+.dark .border-slate-100,
+.dark .border-slate-200,
+.dark .border-slate-200\/60,
+.dark .border-slate-200\/70,
+.dark .border-slate-200\/80 {
+  border-color: rgba(255, 255, 255, 0.08);
+}
+.dark .divide-slate-100 > :not([hidden]) ~ :not([hidden]) {
+  border-color: rgba(255, 255, 255, 0.08);
+}
